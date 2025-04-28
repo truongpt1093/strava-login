@@ -2,10 +2,123 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Đăng nhập Strava</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kết nối Strava - Ứng dụng của bạn</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #e9ecef 100%);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      padding: 40px 32px 32px 32px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      margin-top: 40px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+      color: #222;
+    }
+    p {
+      color: #555;
+      margin-bottom: 28px;
+      font-size: 1.1rem;
+    }
+    /* Strava Connect Button */
+    .strava-connect-btn {
+      display: inline-block;
+      height: 48px;
+      line-height: 48px;
+      background: #fc4c02;
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      padding: 0 32px;
+      margin-bottom: 18px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(252,76,2,0.09);
+      letter-spacing: 0.5px;
+    }
+    .strava-connect-btn:hover {
+      background: #e54300;
+    }
+    /* Powered by Strava logo */
+    .strava-powered {
+      margin: 24px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .strava-powered img {
+      height: 28px;
+    }
+    /* View on Strava link */
+    .view-on-strava {
+      display: inline-block;
+      margin-top: 18px;
+      font-weight: bold;
+      color: #FC5200;
+      text-decoration: underline;
+      font-size: 1rem;
+      letter-spacing: 0.2px;
+      transition: color 0.2s;
+    }
+    .view-on-strava:hover {
+      color: #b83a00;
+    }
+    /* Responsive */
+    @media (max-width: 500px) {
+      .container {
+        padding: 24px 8px;
+      }
+      h1 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Đăng nhập với Strava</h1>
-  <a href="https://www.strava.com/oauth/authorize?client_id=155447&response_type=code&redirect_uri=https://n8n-new.tin20ctn.xyz/callback&approval_prompt=auto&scope=read_all" style="font-size: 24px; background: orange; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Đăng nhập Strava</a>
+  <div class="container">
+    <h1>Kết nối với Strava</h1>
+    <p>Đăng nhập bằng tài khoản Strava để đồng bộ dữ liệu thể thao của bạn với ứng dụng này.<br>
+      <span style="font-size:0.95em; color:#888;">(Ứng dụng này không thuộc Strava và không được tài trợ bởi Strava)</span>
+    </p>
+    <!-- Nút Connect with Strava (chuẩn guideline, không chỉnh sửa) -->
+    <a
+      class="strava-connect-btn"
+      href="https://www.strava.com/oauth/authorize?client_id=155447&response_type=code&redirect_uri=https://n8n-new.tin20ctn.xyz/callback&approval_prompt=auto&scope=read_all"
+      style="background:#fc4c02;color:#fff;"
+      >
+      <img src="https://developers.strava.com/img/connect_with_strava.png" alt="Connect with Strava" style="height:32px;vertical-align:middle;margin-right:10px;">Đăng nhập với Strava
+    </a>
+    <br>
+    <!-- Liên kết View on Strava (theo guideline) -->
+    <a class="view-on-strava" href="https://www.strava.com/" target="_blank" rel="noopener">
+      View on Strava
+    </a>
+    <!-- Logo Powered by Strava (theo guideline) -->
+    <div class="strava-powered">
+      <span style="font-size:0.95em;color:#666;">Powered by</span>
+      <img src="https://developers.strava.com/img/powered_by_strava.png" alt="Powered by Strava">
+    </div>
+  </div>
 </body>
 </html>
