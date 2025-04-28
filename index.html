@@ -21,7 +21,7 @@
       border-radius: 16px;
       box-shadow: 0 4px 24px rgba(0,0,0,0.07);
       padding: 40px 32px 32px 32px;
-      max-width: 400px;
+      max-width: 420px;
       width: 100%;
       text-align: center;
       margin-top: 40px;
@@ -41,39 +41,21 @@
     .strava-connect-btn {
       display: inline-block;
       height: 48px;
-      line-height: 48px;
-      background: #fc4c02;
-      color: #fff;
-      font-weight: 700;
+      background: none;
       border: none;
-      border-radius: 4px;
-      font-size: 1.1rem;
-      text-decoration: none;
-      padding: 0 32px;
+      padding: 0;
       margin-bottom: 18px;
       cursor: pointer;
-      transition: background 0.2s;
-      box-shadow: 0 2px 8px rgba(252,76,2,0.09);
-      letter-spacing: 0.5px;
+      text-decoration: none;
     }
-    .strava-connect-btn:hover {
-      background: #e54300;
-    }
-    /* Powered by Strava logo */
-    .strava-powered {
-      margin: 24px 0 0 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
-    .strava-powered img {
-      height: 28px;
+    .strava-connect-btn img {
+      height: 48px;
+      display: block;
     }
     /* View on Strava link */
     .view-on-strava {
       display: inline-block;
-      margin-top: 18px;
+      margin-top: 14px;
       font-weight: bold;
       color: #FC5200;
       text-decoration: underline;
@@ -84,7 +66,26 @@
     .view-on-strava:hover {
       color: #b83a00;
     }
-    /* Responsive */
+    /* Logo group */
+    .strava-logos {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 36px;
+      margin-bottom: 10px;
+    }
+    .strava-logos img {
+      max-width: 300px;
+      height: auto;
+      background: none;
+    }
+    .note {
+      font-size: 0.96em;
+      color: #888;
+      margin-top: 18px;
+      margin-bottom: 0;
+    }
     @media (max-width: 500px) {
       .container {
         padding: 24px 8px;
@@ -92,33 +93,41 @@
       h1 {
         font-size: 1.3rem;
       }
+      .strava-logos img {
+        max-width: 95vw;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Kết nối với Strava</h1>
-    <p>Đăng nhập bằng tài khoản Strava để đồng bộ dữ liệu thể thao của bạn với ứng dụng này.<br>
-      <span style="font-size:0.95em; color:#888;">(Ứng dụng này không thuộc Strava và không được tài trợ bởi Strava)</span>
+    <p>
+      Đăng nhập bằng tài khoản Strava để đồng bộ dữ liệu thể thao của bạn với ứng dụng này.<br>
+      <span class="note">(Ứng dụng này không thuộc Strava và không được tài trợ bởi Strava)</span>
     </p>
-    <!-- Nút Connect with Strava (chuẩn guideline, không chỉnh sửa) -->
+    <!-- Nút Connect with Strava (bắt buộc, không chỉnh sửa) -->
     <a
       class="strava-connect-btn"
       href="https://www.strava.com/oauth/authorize?client_id=155447&response_type=code&redirect_uri=https://n8n-new.tin20ctn.xyz/callback&approval_prompt=auto&scope=read_all"
-      style="background:#fc4c02;color:#fff;"
-      >
-      <img src="https://developers.strava.com/img/connect_with_strava.png" alt="Connect with Strava" style="height:32px;vertical-align:middle;margin-right:10px;">Đăng nhập với Strava
+      title="Connect with Strava"
+    >
+      <img src="btn_strava_connect_with_orange.png" alt="Connect with Strava button">
     </a>
     <br>
-    <!-- Liên kết View on Strava (theo guideline) -->
+    <!-- Liên kết View on Strava -->
     <a class="view-on-strava" href="https://www.strava.com/" target="_blank" rel="noopener">
       View on Strava
     </a>
-    <!-- Logo Powered by Strava (theo guideline) -->
-    <div class="strava-powered">
-      <span style="font-size:0.95em;color:#666;">Powered by</span>
-      <img src="https://developers.strava.com/img/powered_by_strava.png" alt="Powered by Strava">
+    <!-- Nhóm logo Strava (bắt buộc, không chỉnh sửa) -->
+    <div class="strava-logos">
+      <img src="api_logo_cptblWith_strava_horiz_orange.png" alt="Compatible with Strava logo">
+      <img src="api_logo_pwrdBy_strava_horiz_orange.png" alt="Powered by Strava logo">
     </div>
+    <p class="note">
+      Các logo và nút Strava được sử dụng theo đúng hướng dẫn của Strava.<br>
+      Không chỉnh sửa, không làm to hơn tên ứng dụng, không gây hiểu nhầm về mối quan hệ với Strava.
+    </p>
   </div>
 </body>
 </html>
