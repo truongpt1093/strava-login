@@ -3,48 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kết nối Strava - Ứng dụng của bạn</title>
+  <title>RunningNoteAI - Kết nối Strava & Phân tích chạy bộ bằng AI</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --main-orange: #fc4c02;
+      --main-dark: #232323;
+      --main-gray: #f7f7f7;
+      --main-light: #fff;
+      --main-border: #ececec;
+    }
     body {
       font-family: 'Roboto', Arial, sans-serif;
-      background: linear-gradient(135deg, #f8fafc 0%, #e9ecef 100%);
-      min-height: 100vh;
+      background: var(--main-gray);
       margin: 0;
+      min-height: 100vh;
+      color: var(--main-dark);
       display: flex;
       flex-direction: column;
-      justify-content: center;
+    }
+    /* Header */
+    header {
+      background: var(--main-light);
+      border-bottom: 2px solid var(--main-border);
+      padding: 0 0 0 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .navbar {
+      display: flex;
       align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 24px;
     }
-    .container {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-      padding: 40px 32px 32px 32px;
-      max-width: 420px;
-      width: 100%;
-      text-align: center;
-      margin-top: 40px;
-    }
-    h1 {
+    .logo {
       font-size: 2rem;
-      margin-bottom: 12px;
       font-weight: 700;
-      color: #222;
+      color: var(--main-orange);
+      letter-spacing: 1px;
+      text-decoration: none;
     }
-    p {
-      color: #555;
-      margin-bottom: 28px;
-      font-size: 1.1rem;
+    nav {
+      display: flex;
+      gap: 28px;
     }
-    /* Strava Connect Button */
+    nav a {
+      color: var(--main-dark);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.08rem;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: var(--main-orange);
+    }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(120deg, #fff 70%, #fc4c0215 100%);
+      padding: 48px 0 12px 0;
+      text-align: center;
+    }
+    .hero-title {
+      font-size: 2.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--main-dark);
+    }
+    .hero-desc {
+      color: #444;
+      font-size: 1.15rem;
+      margin-bottom: 18px;
+    }
+    /* Main content */
+    main {
+      flex: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 0 16px;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .main-left, .main-right {
+      flex: 1 1 340px;
+      min-width: 320px;
+      max-width: 520px;
+    }
+    /* Strava Box */
+    .strava-box {
+      background: var(--main-light);
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(252,76,2,0.06);
+      border: 1.5px solid var(--main-border);
+      padding: 28px 24px 22px 24px;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+    .strava-status {
+      font-size: 1.08rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #d32f2f;
+    }
+    .strava-desc {
+      font-size: 1.01rem;
+      color: #444;
+      margin-bottom: 18px;
+    }
     .strava-connect-btn {
       display: inline-block;
-      height: 48px;
       background: none;
       border: none;
       padding: 0;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
       cursor: pointer;
       text-decoration: none;
     }
@@ -52,19 +126,38 @@
       height: 48px;
       display: block;
     }
-    /* View on Strava link */
-    .view-on-strava {
-      display: inline-block;
-      margin-top: 14px;
-      font-weight: bold;
-      color: #FC5200;
-      text-decoration: underline;
-      font-size: 1rem;
-      letter-spacing: 0.2px;
-      transition: color 0.2s;
+    .strava-note {
+      font-size: 0.97em;
+      color: #888;
+      margin-top: 10px;
     }
-    .view-on-strava:hover {
-      color: #b83a00;
+    /* Quick Start Guide */
+    .quick-guide {
+      background: var(--main-light);
+      border-radius: 14px;
+      border: 1.5px solid var(--main-border);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      padding: 26px 24px 18px 24px;
+      margin-bottom: 22px;
+    }
+    .quick-guide h2 {
+      color: var(--main-orange);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      letter-spacing: 0.2px;
+    }
+    .quick-guide ol {
+      padding-left: 20px;
+      margin: 0 0 10px 0;
+    }
+    .quick-guide li {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+    .quick-guide .emoji {
+      font-size: 1.15em;
+      margin-right: 3px;
     }
     /* Logo group */
     .strava-logos {
@@ -72,26 +165,61 @@
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      margin-top: 36px;
+      margin-top: 22px;
       margin-bottom: 10px;
     }
     .strava-logos img {
-      max-width: 300px;
+      max-width: 260px;
       height: auto;
       background: none;
     }
-    .note {
-      font-size: 0.96em;
-      color: #888;
-      margin-top: 18px;
-      margin-bottom: 0;
+    /* Footer */
+    footer {
+      background: #232323;
+      color: #fff;
+      text-align: center;
+      padding: 24px 10px 16px 10px;
+      font-size: 1.01rem;
+      margin-top: 42px;
     }
-    @media (max-width: 500px) {
-      .container {
-        padding: 24px 8px;
+    .footer-links {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      color: #fc4c02;
+      text-decoration: underline;
+      margin: 0 10px;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+    .footer-links a:hover {
+      color: #fff;
+      background: #fc4c02;
+      border-radius: 4px;
+      padding: 2px 6px;
+      transition: all 0.18s;
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      main {
+        flex-direction: column;
+        gap: 0;
       }
-      h1 {
-        font-size: 1.3rem;
+      .main-left, .main-right {
+        max-width: 100%;
+      }
+    }
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px 6px;
+      }
+      .hero-title {
+        font-size: 1.4rem;
+      }
+      main {
+        padding: 10px 2vw 0 2vw;
       }
       .strava-logos img {
         max-width: 95vw;
@@ -100,34 +228,87 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Kết nối với Strava</h1>
-    <p>
-      Đăng nhập bằng tài khoản Strava để đồng bộ dữ liệu thể thao của bạn với ứng dụng này.<br>
-      <span class="note">(Ứng dụng này không thuộc Strava và không được tài trợ bởi Strava)</span>
-    </p>
-    <!-- Nút Connect with Strava (bắt buộc, không chỉnh sửa) -->
-    <a
-      class="strava-connect-btn"
-      href="https://www.strava.com/oauth/authorize?client_id=155447&response_type=code&redirect_uri=https://n8n-new.tin20ctn.xyz/callback&approval_prompt=auto&scope=read_all"
-      title="Connect with Strava"
-    >
-      <img src="btn_strava_connect_with_orange.png" alt="Connect with Strava button">
-    </a>
-    <br>
-    <!-- Liên kết View on Strava -->
-    <a class="view-on-strava" href="https://www.strava.com/" target="_blank" rel="noopener">
-      View on Strava
-    </a>
-    <!-- Nhóm logo Strava (bắt buộc, không chỉnh sửa) -->
-    <div class="strava-logos">
-      <img src="api_logo_cptblWith_strava_horiz_orange.png" alt="Compatible with Strava logo">
-      <img src="api_logo_pwrdBy_strava_horiz_orange.png" alt="Powered by Strava logo">
+  <!-- Header & Navbar -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="logo">RunningNoteAI</a>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Tool</a>
+        <a href="#">FAQ</a>
+        <a href="#">About</a>
+      </nav>
     </div>
-    <p class="note">
-      Các logo và nút Strava được sử dụng theo đúng hướng dẫn của Strava.<br>
-      Không chỉnh sửa, không làm to hơn tên ứng dụng, không gây hiểu nhầm về mối quan hệ với Strava.
-    </p>
-  </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-title">Phân tích chạy bộ tự động với Strava & AI</div>
+    <div class="hero-desc">
+      Kết nối tài khoản Strava để nhận phân tích và gợi ý luyện tập từ AI, giúp bạn nâng cao thành tích chạy bộ mỗi ngày.
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Left: Strava Connect & Logo -->
+    <section class="main-left">
+      <div class="strava-box">
+        <div class="strava-status">
+          Strava Connection: <span style="color:#d32f2f;">Unconnected</span>
+        </div>
+        <div class="strava-desc">
+          Kết nối tài khoản Strava để tạo ghi chú chạy bộ tự động bằng AI.
+        </div>
+        <!-- Nút Connect with Strava -->
+        <a
+          class="strava-connect-btn"
+          href="https://www.strava.com/oauth/authorize?client_id=155447&response_type=code&redirect_uri=https://n8n-new.tin20ctn.xyz/callback&approval_prompt=auto&scope=read_all"
+          title="Connect with Strava"
+        >
+          <img src="btn_strava_connect_with_orange.png" alt="Connect with Strava button">
+        </a>
+        <div class="strava-note">
+          RunningNoteAI không lưu trữ hoặc chia sẻ dữ liệu hoạt động của bạn. <br>
+          Dữ liệu chỉ được phân tích sau khi bạn đồng ý cấp quyền từ Strava.
+        </div>
+        <!-- Logo Strava -->
+        <div class="strava-logos">
+          <img src="api_logo_cptblWith_strava_horiz_orange.png" alt="Compatible with Strava logo">
+          <img src="api_logo_pwrdBy_strava_horiz_orange.png" alt="Powered by Strava logo">
+        </div>
+      </div>
+    </section>
+
+    <!-- Right: Quick Start Guide -->
+    <section class="main-right">
+      <div class="quick-guide">
+        <h2>🚀 Quick Start Guide</h2>
+        <ol>
+          <li><span class="emoji">🔗</span><b>Connect:</b> Đăng nhập Strava & cấp quyền cho RunningNoteAI.</li>
+          <li><span class="emoji">🏃‍♂️</span><b>Run:</b> Chạy như bình thường, đảm bảo đồng bộ dữ liệu với Strava.</li>
+          <li><span class="emoji">📊</span><b>Analyze:</b> AI tự động phân tích hoạt động chạy của bạn.</li>
+          <li><span class="emoji">💡</span><b>Act:</b> Đọc gợi ý AI trong ghi chú riêng tư & điều chỉnh luyện tập.</li>
+        </ol>
+        <div style="margin-top:10px;font-size:0.97em;color:#666;">
+          Chúc bạn chạy vui & an toàn!<br>
+          <a href="https://www.strava.com/" target="_blank" style="color:#fc4c02;text-decoration:underline;font-weight:bold;">View on Strava</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="#">Chính sách bảo mật</a>
+      <a href="#">Điều khoản sử dụng</a>
+      <a href="https://www.strava.com/" target="_blank">Strava</a>
+    </div>
+    <div>
+      © 2025 RunningNoteAI. Ứng dụng không thuộc Strava và không được tài trợ bởi Strava.<br>
+      Các logo và nút Strava được sử dụng theo đúng hướng dẫn thương hiệu.
+    </div>
+  </footer>
 </body>
 </html>
